@@ -11,7 +11,7 @@ backup:
 
 image:
   repository: registry.egi.eu/vo.notebooks.egi.eu/svc-backup
-  tag: ""
+  tag: ''
   pullPolicy: IfNotPresent
 
 nodeSelector:
