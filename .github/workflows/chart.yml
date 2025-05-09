@@ -48,6 +48,6 @@ jobs:
           git config --global user.name "egibot"
           git config --global user.email "egibot@egi.eu"
           chartpress --push
-          f="$(ls -1 notebooks-backup-*.tgz | head -n 1)"
+          f="$(find . -maxdepth 1 -name notebooks-backup-\*.tgz | head -n 1)"
           helm push "$f" "oci://${{ secrets.REGISTRY_SERVER }}/vo.notebooks.egi.eu"
         if: github.event_name != 'pull_request'
