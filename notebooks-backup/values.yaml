@@ -10,8 +10,8 @@ backup:
   env: {}
 
 image:
-  repository: eginotebooks/svc-backup
-  tag: '0.1.0'
+  repository: registry.egi.eu/vo.notebooks.egi.eu/svc-backup
+  tag:
   pullPolicy: IfNotPresent
 
 nodeSelector:
@@ -35,4 +35,3 @@ resources: {}
   #  memory: 128Mi
 
 affinity: {}
-
