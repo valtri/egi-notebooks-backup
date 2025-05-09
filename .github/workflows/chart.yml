@@ -36,13 +36,13 @@ jobs:
       - name: Login to image registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ secrets.REGISTRY_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
+          registry: ${{ vars.REGISTRY_SERVER }}
+          username: ${{ vars.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
         if: github.event_name != 'pull_request'
       - name: Login to chart registry
         run: |
-          echo "${{ secrets.REGISTRY_TOKEN }}" | helm registry login --username "${{ secrets.REGISTRY_USERNAME }}" --password-stdin "${{ secrets.REGISTRY_SERVER }}"
+          echo "${{ secrets.REGISTRY_TOKEN }}" | helm registry login --username "${{ vars.REGISTRY_USERNAME }}" --password-stdin "${{ vars.REGISTRY_SERVER }}"
         if: github.event_name != 'pull_request'
       - name: Push chart
         run: |
@@ -50,5 +50,5 @@ jobs:
           git config --global user.email "egibot@egi.eu"
           chartpress --push
           f="$(find . -maxdepth 1 -name notebooks-backup-\*.tgz | head -n 1)"
-          helm push "$f" "oci://${{ secrets.REGISTRY_SERVER }}/vo.notebooks.egi.eu"
+          helm push "$f" "oci://${{ vars.REGISTRY_SERVER }}/vo.notebooks.egi.eu"
         if: github.event_name != 'pull_request'
