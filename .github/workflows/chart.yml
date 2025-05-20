@@ -5,7 +5,7 @@ on:
   push:
     # only pushes on master so we don't push intermediate results
     branches:
-      - master
+      - "*"
       # also when tagging so we get nice versioning
     tags:
       - "*"
